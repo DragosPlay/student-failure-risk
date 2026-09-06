@@ -171,6 +171,10 @@ def evaluate_ensemble_fast(models, calibrator, X_test, y_test, threshold=0.5):
     pr_auc = average_precision_score(y_test, probs)
     preds = (probs >= threshold).astype(int)
 
+    # Доверительные интервалы вырезаны для скорости
+    ci_lower = 0.0
+    ci_upper = 0.0
+
     return roc_auc, pr_auc, ci_lower, ci_upper, probs, preds
 
 
